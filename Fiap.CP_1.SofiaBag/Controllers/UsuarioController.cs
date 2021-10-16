@@ -11,7 +11,10 @@ namespace Fiap.CP_1.SofiaBag.Controllers
     public class UsuarioController : Controller
     {
         private MochilaContext _context;
-
+        public UsuarioController(MochilaContext context)
+        {
+            _context = context;
+        }
         [HttpGet]
         public IActionResult Index(string nomeBuscado)
         {

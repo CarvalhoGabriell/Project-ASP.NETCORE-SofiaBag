@@ -21,7 +21,6 @@ namespace Fiap.CP_1.SofiaBag.Models
         [Display(Name ="Nome da sua Mochila")] [MaxLength(15)]
         public string NomeMochila { get; set; }
 
-        [MaxLength(2)]
         public int Idade { get; set; }
 
         [Display(Name ="Data Nascimento")] [DataType(DataType.Date)]

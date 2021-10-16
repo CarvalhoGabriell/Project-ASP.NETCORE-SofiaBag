@@ -1,26 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Gabriel\\source\\repos\\Fiap.Check.Web.SofiaBag\\Fiap.CP_1.SofiaBag\\Fiap.CP_1.SofiaBag.csproj": {}
+    "C:\\Users\\Mateus\\Source\\Repos\\Project-ASP.NETCORE-SofiaBag\\Fiap.CP_1.SofiaBag\\Fiap.CP_1.SofiaBag.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Gabriel\\source\\repos\\Fiap.Check.Web.SofiaBag\\Fiap.CP_1.SofiaBag\\Fiap.CP_1.SofiaBag.csproj": {
+    "C:\\Users\\Mateus\\Source\\Repos\\Project-ASP.NETCORE-SofiaBag\\Fiap.CP_1.SofiaBag\\Fiap.CP_1.SofiaBag.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Gabriel\\source\\repos\\Fiap.Check.Web.SofiaBag\\Fiap.CP_1.SofiaBag\\Fiap.CP_1.SofiaBag.csproj",
+        "projectUniqueName": "C:\\Users\\Mateus\\Source\\Repos\\Project-ASP.NETCORE-SofiaBag\\Fiap.CP_1.SofiaBag\\Fiap.CP_1.SofiaBag.csproj",
         "projectName": "Fiap.CP_1.SofiaBag",
-        "projectPath": "C:\\Users\\Gabriel\\source\\repos\\Fiap.Check.Web.SofiaBag\\Fiap.CP_1.SofiaBag\\Fiap.CP_1.SofiaBag.csproj",
-        "packagesPath": "C:\\Users\\Gabriel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Gabriel\\source\\repos\\Fiap.Check.Web.SofiaBag\\Fiap.CP_1.SofiaBag\\obj\\",
+        "projectPath": "C:\\Users\\Mateus\\Source\\Repos\\Project-ASP.NETCORE-SofiaBag\\Fiap.CP_1.SofiaBag\\Fiap.CP_1.SofiaBag.csproj",
+        "packagesPath": "C:\\Users\\Mateus\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Mateus\\Source\\Repos\\Project-ASP.NETCORE-SofiaBag\\Fiap.CP_1.SofiaBag\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Gabriel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Mateus\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
