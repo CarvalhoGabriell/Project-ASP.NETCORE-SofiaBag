@@ -14,5 +14,14 @@ namespace Fiap.CP_1.SofiaBag.Persistencia
         public DbSet<Usuario> Usuarios { get; set; }
 
         public MochilaContext(DbContextOptions op): base(op) { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Usuario>()
+                .HasKey(u => u.UsuarioId);
+            base.OnModelCreating(modelBuilder);
+        }
+
     }
+    
 }
