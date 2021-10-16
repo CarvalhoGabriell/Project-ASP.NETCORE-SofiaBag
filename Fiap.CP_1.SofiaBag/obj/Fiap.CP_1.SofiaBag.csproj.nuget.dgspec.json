@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mateus\\Source\\Repos\\Project-ASP.NETCORE-SofiaBag\\Fiap.CP_1.SofiaBag\\Fiap.CP_1.SofiaBag.csproj": {}
+    "C:\\Users\\Mateus\\source\\repos\\Project-ASP.NETCORE-SofiaBag\\Fiap.CP_1.SofiaBag\\Fiap.CP_1.SofiaBag.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mateus\\Source\\Repos\\Project-ASP.NETCORE-SofiaBag\\Fiap.CP_1.SofiaBag\\Fiap.CP_1.SofiaBag.csproj": {
+    "C:\\Users\\Mateus\\source\\repos\\Project-ASP.NETCORE-SofiaBag\\Fiap.CP_1.SofiaBag\\Fiap.CP_1.SofiaBag.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mateus\\Source\\Repos\\Project-ASP.NETCORE-SofiaBag\\Fiap.CP_1.SofiaBag\\Fiap.CP_1.SofiaBag.csproj",
+        "projectUniqueName": "C:\\Users\\Mateus\\source\\repos\\Project-ASP.NETCORE-SofiaBag\\Fiap.CP_1.SofiaBag\\Fiap.CP_1.SofiaBag.csproj",
         "projectName": "Fiap.CP_1.SofiaBag",
-        "projectPath": "C:\\Users\\Mateus\\Source\\Repos\\Project-ASP.NETCORE-SofiaBag\\Fiap.CP_1.SofiaBag\\Fiap.CP_1.SofiaBag.csproj",
+        "projectPath": "C:\\Users\\Mateus\\source\\repos\\Project-ASP.NETCORE-SofiaBag\\Fiap.CP_1.SofiaBag\\Fiap.CP_1.SofiaBag.csproj",
         "packagesPath": "C:\\Users\\Mateus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mateus\\Source\\Repos\\Project-ASP.NETCORE-SofiaBag\\Fiap.CP_1.SofiaBag\\obj\\",
+        "outputPath": "C:\\Users\\Mateus\\source\\repos\\Project-ASP.NETCORE-SofiaBag\\Fiap.CP_1.SofiaBag\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Mateus\\AppData\\Roaming\\NuGet\\NuGet.Config",

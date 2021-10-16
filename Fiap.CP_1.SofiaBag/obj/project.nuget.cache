@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DuirJM8Sm0lj5J7I98rzfwUZ5yPk+AsfiPIdSgUdyWDoucTJoT29YkC5W8Zt+S4d+lCzTXbq46F/hQwwBg8vOw==",
+  "dgSpecHash": "KW6YgmiajXGw/o1kl7Zf70Vsq39v4jaA7z+wESb3v01S9eiLotc0MFkCbqLn4Dvxub5ExXD9cIP2N6EajpHKPw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Mateus\\Source\\Repos\\Project-ASP.NETCORE-SofiaBag\\Fiap.CP_1.SofiaBag\\Fiap.CP_1.SofiaBag.csproj",
+  "projectFilePath": "C:\\Users\\Mateus\\source\\repos\\Project-ASP.NETCORE-SofiaBag\\Fiap.CP_1.SofiaBag\\Fiap.CP_1.SofiaBag.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mateus\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Mateus\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\3.1.17\\microsoft.aspnetcore.mvc.razor.extensions.3.1.17.nupkg.sha512",
