@@ -28,6 +28,11 @@ namespace Fiap.CP_1.SofiaBag.Models
 
         [Display(Name ="Cores")]
         public string Cor { get; set; }
+
+        // relacionamento 1:1
+        public Lembrete Lembrete { get; set; }
+
+        public int? LembreteId { get; set; }
     }
 
     public enum Categoria {

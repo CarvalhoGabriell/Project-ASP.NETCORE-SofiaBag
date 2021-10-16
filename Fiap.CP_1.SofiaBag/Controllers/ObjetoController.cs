@@ -2,6 +2,7 @@
 using Fiap.CP_1.SofiaBag.Persistencia;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +22,10 @@ namespace Fiap.CP_1.SofiaBag.Controllers
         [HttpGet]
         public IActionResult Index(string nomeBuscado)
         {
-            var busca = _context.Objetos.Where(str => 
-                (str.Nome.Contains(nomeBuscado) || nomeBuscado == null)).ToList();
+            var busca = _context.Objetos.Where(str =>
+                (str.Nome.Contains(nomeBuscado) || nomeBuscado == null))
+                .Include(o => o.Lembrete).ToList();
+               
             return View(busca);
         }
 

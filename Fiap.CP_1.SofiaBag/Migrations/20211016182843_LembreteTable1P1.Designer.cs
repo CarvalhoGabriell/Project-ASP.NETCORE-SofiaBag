@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fiap.CP_1.SofiaBag.Migrations
 {
     [DbContext(typeof(MochilaContext))]
-    [Migration("20211016002613_UsuarioAlterandoenum")]
-    partial class UsuarioAlterandoenum
+    [Migration("20211016182843_LembreteTable1P1")]
+    partial class LembreteTable1P1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,28 @@ namespace Fiap.CP_1.SofiaBag.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Fiap.CP_1.SofiaBag.Models.Lembrete", b =>
+                {
+                    b.Property<int>("LembreteId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DtLembrete")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Nome")
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("LembreteId");
+
+                    b.ToTable("TB_LEMBRETE");
+                });
 
             modelBuilder.Entity("Fiap.CP_1.SofiaBag.Models.Objetos", b =>
                 {
