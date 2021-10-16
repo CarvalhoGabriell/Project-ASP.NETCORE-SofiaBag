@@ -1,5 +1,84 @@
-﻿
+﻿@model List<Usuario>
 
 @{
-    ViewData["Title"] = "Home Usuario";
+    ViewData["Title"] = "Usuarios";
 }
+
+<h1>Lista de usuários</h1>
+
+<form class="row row-cols-lg-auto g-3 align-items-center">
+    <div class="col-8" style="margin-bottom:9px">
+        <div class="input-group">
+            <div class="input-group-text">Filtro</div>
+            <input class="form-control" type="text" name="nomeBuscado" id="nomeBuscado" placeholder="Digite um Nome...">
+        </div>
+    </div>
+
+    <div class="col-2" style="margin-bottom:10px">
+        <input type="submit" class="btn btn-primary" value="Pesquisar" />
+    </div>
+
+    <div class="col-2" style="margin-bottom:10px">
+        <a style="background-color:greenyellow" class="btn btn-success" asp-action="Cadastrar">Cadastrar Usuario</a>
+    </div>
+
+
+</form>
+
+
+
+
+<table style="border-radius:10px" class="table table-bordered table-dark">
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Mochila</th>
+        <th>Idade</th>
+        <th>Data Nascimento</th>
+        <th>Sexo</th>
+    </tr>
+
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.UsuarioId</td>
+            <td>@user.NomeCompleto</td>
+            <td>@user.NomeMochila</td>
+            <td>@user.Idade</td>
+            <td>@user.DtNascimento.ToShortDateString()</td>
+            <td>@user.Sexo</td>
+            <td style="justify-content:space-between">
+                <button onclick="UserId.value = @user.UsuarioId" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#exampleModal">Remover</button>
+            </td>
+
+        </tr>
+    }
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:red">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmação Remover</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                Ops :( <br />
+                Deseja Mesmo Deletar este Funcionario? <br />
+            </div>
+            <div class="modal-footer">
+                <form asp-action="deletar">
+                    <!-- O atributo "id deve ser o mesmo informado no metodo POST da action de remover"-->
+                    <input type="hidden" name="id" id="UserId" />
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger">Sim</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
