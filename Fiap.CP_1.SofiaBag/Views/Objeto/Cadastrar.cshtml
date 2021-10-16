@@ -1,0 +1,67 @@
+﻿@model Objetos
+
+@{
+    ViewData["title"] = "Cadastro de Objetos";
+}
+
+
+<sucess-msg mensagem="@TempData["msg"]"></sucess-msg>
+
+<button type="button" style="margin-bottom:1rem" class="btn btn-primary btn-lg btn-block">Cadastre Objetos Para usar na sua Sofia-Bag</button>
+
+<form asp-action="cadastrar">
+
+    <div class="row g-3">
+        <div class="col-sm-7">
+            <label asp-for="Nome"></label>
+            <input asp-for="Nome" class="form-control" placeholder="Nome do Objeto" aria-label="Nome" />
+        </div>
+        <div class="col-sm">
+            <label asp-for="DtCadastro"></label>
+            <input asp-for="DtCadastro" class="form-control" placeholder="Data do Cadastro" aria-label="Data" />
+        </div>
+        <div class="col-sm" style="margin-top:auto">
+            <label asp-for="Ativo">Objeto Disponível </label>
+            <input asp-for="Ativo" aria-label="Ativo" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input asp-for="CodigoId" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Descricao"></label>
+        <textarea placeholder="Deixe uma breve Descrição" asp-for="Descricao" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Tipo"></label>
+        <select class="form-control" asp-for="Tipo" asp-items="@Html.GetEnumSelectList<Categoria>()">
+            <option>Selecione uma Categoria</option>
+        </select>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Cor"></label>
+        <select asp-for="Cor" class="form-control" asp-items="@ViewBag.cores">
+            <option>Selecione uma Cor</option>
+        </select>
+    </div>
+
+
+    <div style="margin-top:15px; padding:15px; margin-left:410px">
+
+        <input type="submit" class="btn btn-lg btn-success" value="Cadastrar" />
+        <a asp-action="index" class="btn btn-lg btn-primary">Objetos</a>
+    </div>
+
+    <hr />
+
+    <div>
+
+
+    </div>
+
+</form>
