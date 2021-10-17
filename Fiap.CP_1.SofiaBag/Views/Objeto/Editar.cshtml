@@ -12,49 +12,12 @@
 
 <form asp-action="editar">
 
-    <div class="row g-3">
-        <div class="col-sm-7">
-            <input asp-for="Nome" class="form-control" placeholder="Nome do Objeto" aria-label="Nome" />
-        </div>
-        <div class="col-sm">
-            <input asp-for="DtCadastro" class="form-control" placeholder="Data Cadastro" aria-label="Data" />
-        </div>
-        <div class="col-sm">
-            <label asp-for="Ativo">Status Atual </label>
-            <input asp-for="Ativo" aria-label="Ativo" />
-        </div>
-    </div>
-
-    <div class="form-group">
-        <input asp-for="CodigoId" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Descricao"></label>
-        <textarea placeholder="Deixe uma Descrição" asp-for="Descricao" class="form-control"></textarea>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Tipo"></label>
-        <select class="form-control" asp-for="Tipo" asp-items="@Html.GetEnumSelectList<Categoria>()">
-            <option>Selecione</option>
-        </select>
-
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Cor"></label>
-        <select asp-for="Cor" class="form-control" asp-items="@ViewBag.cores">
-            <option>Selecione</option>
-        </select>
-    </div>
-
+    <partial name="_FormObjeto" />
 
     <div style="margin-top:15px">
 
         <input type="submit" class="btn btn-outline-success" value="Salvar" />
         <a asp-action="index" class="btn btn-danger">Cancelar</a>
     </div>
-
 
 </form>

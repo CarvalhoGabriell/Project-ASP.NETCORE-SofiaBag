@@ -36,7 +36,7 @@ namespace Fiap.CP_1.SofiaBag.Controllers
             _context.Usuarios.Add(user);
             _context.SaveChanges();
             TempData["msg"] = "Usuário Cadastrado com sucesso";
-            return RedirectToAction("Cadastrar");
+            return RedirectToAction("Cadastrar", "Objeto");
         }
 
         [HttpPost]
@@ -44,8 +44,9 @@ namespace Fiap.CP_1.SofiaBag.Controllers
         {
             var buscaUser =_context.Usuarios.Find(id);
             _context.Usuarios.Remove(buscaUser);
+            _context.SaveChanges();
             TempData["msg"] = "Usuário Removido com sucesso";
-            return View("index");
+            return RedirectToAction("index");
         }
     }
 }

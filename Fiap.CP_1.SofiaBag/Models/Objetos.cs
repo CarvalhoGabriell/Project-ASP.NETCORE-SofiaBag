@@ -20,22 +20,21 @@ namespace Fiap.CP_1.SofiaBag.Models
         [Display(Name ="Descrição")]
         public string Descricao { get; set; }
 
-        [Display(Name ="Categoria")]
-        public Categoria Tipo { get; set; }
-
         [DataType(DataType.Date), Display(Name ="Data de Cadastro")]
         public DateTime DtCadastro { get; set; }
 
         [Display(Name ="Cores")]
         public string Cor { get; set; }
 
+        // relacionamento N:N
+        [Display(Name ="Categoria")]
+        public Categoria Categ { get; set; }
+
+        public int CategoriaId { get; set; }
+
         // relacionamento 1:1
         public Lembrete Lembrete { get; set; }
 
-        public int? LembreteId { get; set; }
-    }
-
-    public enum Categoria {
-        Pessoal, Trabalho, Escola, Faculdade,Essenciais, Lazer, Alimento
+        public int LembreteId { get; set; }
     }
 }

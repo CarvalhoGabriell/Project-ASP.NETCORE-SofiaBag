@@ -41,7 +41,10 @@
         <th>Status Atual</th>
         <th>Data Cadastro</th>
         <th>Cor</th>
-        <th>Ações</th>
+        <th>Lembretes</th>
+        <th>Status Lembrete</th>
+        <th>Remover</th>
+        <th>Editar</th>
     </tr>
 
     @foreach (var itens in Model)
@@ -53,10 +56,15 @@
             <td>@(itens.Ativo?"True":"False")</td>
             <td>@itens.DtCadastro.ToShortDateString()</td>
             <td>@itens.Cor</td>
+            <td class="font-italic">@(itens.Lembrete == null? "----------" : itens.Lembrete.Nome) || Data e Hora: @itens.Lembrete.DtLembrete</td>
+            <td>@(itens.Lembrete.Status.GetValueOrDefault()?"Ativo": "Inativo")</td>
             <td style="justify-content:space-between">
                 <button onclick="idObject.value = @itens.CodigoId" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#exampleModal">Remover</button>
-                <a class="btn btn-sm btn-warning" asp-action="editar" asp-route-id="@itens.CodigoId">Editar</a>
             </td>
+            <td>
+                <a class="btn btn-sm btn-warning" asp-action="editar" asp-route-id="@itens.CodigoId">Editar</a>
+
+            </td>    
 
         </tr>
 

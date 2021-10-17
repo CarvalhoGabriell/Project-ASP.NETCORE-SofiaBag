@@ -4,14 +4,16 @@ using Fiap.CP_1.SofiaBag.Persistencia;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Fiap.CP_1.SofiaBag.Migrations
 {
     [DbContext(typeof(MochilaContext))]
-    partial class MochilaContextModelSnapshot : ModelSnapshot
+    [Migration("20211016235543_RelacionamentoLembrete")]
+    partial class RelacionamentoLembrete
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,10 +32,10 @@ namespace Fiap.CP_1.SofiaBag.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Nome")
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
 
-                    b.Property<bool?>("Status")
+                    b.Property<bool>("Status")
                         .HasColumnType("bit");
 
                     b.HasKey("LembreteId");
@@ -60,7 +62,7 @@ namespace Fiap.CP_1.SofiaBag.Migrations
                     b.Property<DateTime>("DtCadastro")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("LembreteId")
+                    b.Property<int?>("LembreteId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
@@ -109,9 +111,7 @@ namespace Fiap.CP_1.SofiaBag.Migrations
                 {
                     b.HasOne("Fiap.CP_1.SofiaBag.Models.Lembrete", "Lembrete")
                         .WithMany()
-                        .HasForeignKey("LembreteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LembreteId");
 
                     b.Navigation("Lembrete");
                 });

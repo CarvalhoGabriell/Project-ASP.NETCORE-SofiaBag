@@ -61,8 +61,11 @@ namespace Fiap.CP_1.SofiaBag.Controllers
         public IActionResult Editar(int id)
         {
             CarregarCores();
-            // apos no clique no botao "editar" no objeto da tabela esse metodo irá procurar ele na lista de objetos (banco de dados)
-            var objeto = _context.Objetos.Find(id);
+            // apos no clique no botao "editar" no objeto da tabela esse metodo irá procurar ele no (banco de dados)
+            var objeto = _context.Objetos
+                .Include(o => o.Lembrete)
+                .Where(o => o.CodigoId == id)
+                .FirstOrDefault();
             return View(objeto);
         }
 
@@ -72,8 +75,6 @@ namespace Fiap.CP_1.SofiaBag.Controllers
             _context.Objetos.Update(objs);
             _context.SaveChanges();
             TempData["msg"] = "Objeto Editado com Sucesso!";
-            TempData["rfid"] = objs.CodigoId;
-
             return RedirectToAction("Index");
         }
 

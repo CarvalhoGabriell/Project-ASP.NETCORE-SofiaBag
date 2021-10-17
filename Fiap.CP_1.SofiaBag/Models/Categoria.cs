@@ -8,18 +8,19 @@ using System.Threading.Tasks;
 
 namespace Fiap.CP_1.SofiaBag.Models
 {
-    [Table("TB_LEMBRETE")]
-    public class Lembrete
+    [Table("TB_CATEGORIA")]
+    public class Categoria
     {
         [HiddenInput]
-        public int LembreteId { get; set; }
+        public int CategoriaId { get; set; }
 
-        [Display(Name = "Nome do Lembrete")] [MaxLength(30)]
         public string Nome { get; set; }
 
-        [Display(Name = "Data do Lembrete")]
-        public DateTime DtLembrete { get; set; }
+        [MaxLength(30)]
+        public string Descricao { get; set; }
 
-        public bool? Status { get; set; }
+        [DataType(DataType.Date)] [Display(Name ="Data Cadastro")]
+        public DateTime DtCadastro { get; set; }
+
     }
 }

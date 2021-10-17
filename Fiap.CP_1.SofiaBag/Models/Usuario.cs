@@ -18,7 +18,7 @@ namespace Fiap.CP_1.SofiaBag.Models
         [MaxLength(100)]
         public string NomeCompleto { get; set; }
 
-        [Display(Name ="Nome da sua Mochila")] [MaxLength(15)]
+        [Display(Name ="Nome da sua Mochila")] [MaxLength(40)]
         public string NomeMochila { get; set; }
 
         public int Idade { get; set; }
