@@ -28,7 +28,7 @@ namespace Fiap.CP_1.SofiaBag.Models
 
         // relacionamento N:N
         [Display(Name ="Categoria")]
-        public Categoria Categ { get; set; }
+        public ICollection<ObjetoCategoria> ObjetosCateg { get; set; }
 
         public int CategoriaId { get; set; }
 
@@ -36,5 +36,10 @@ namespace Fiap.CP_1.SofiaBag.Models
         public Lembrete Lembrete { get; set; }
 
         public int LembreteId { get; set; }
+
+        /*
+         * RELACIOAMENTO N:1 DE USUARIOS
+         */
+
     }
 }

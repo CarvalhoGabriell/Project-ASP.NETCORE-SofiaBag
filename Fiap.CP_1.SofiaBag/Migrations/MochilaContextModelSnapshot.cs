@@ -19,6 +19,29 @@ namespace Fiap.CP_1.SofiaBag.Migrations
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Fiap.CP_1.SofiaBag.Models.Categoria", b =>
+                {
+                    b.Property<int>("CategoriaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Descricao")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<DateTime>("DtCadastro")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Nome")
+                        .HasMaxLength(55)
+                        .HasColumnType("nvarchar(55)");
+
+                    b.HasKey("CategoriaId");
+
+                    b.ToTable("TB_CATEGORIA");
+                });
+
             modelBuilder.Entity("Fiap.CP_1.SofiaBag.Models.Lembrete", b =>
                 {
                     b.Property<int>("LembreteId")
@@ -41,6 +64,21 @@ namespace Fiap.CP_1.SofiaBag.Migrations
                     b.ToTable("TB_LEMBRETE");
                 });
 
+            modelBuilder.Entity("Fiap.CP_1.SofiaBag.Models.ObjetoCategoria", b =>
+                {
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CodigoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CategoriaId", "CodigoId");
+
+                    b.HasIndex("CodigoId");
+
+                    b.ToTable("TB_OBJETOS_CATEGORIAS");
+                });
+
             modelBuilder.Entity("Fiap.CP_1.SofiaBag.Models.Objetos", b =>
                 {
                     b.Property<int>("CodigoId")
@@ -50,6 +88,9 @@ namespace Fiap.CP_1.SofiaBag.Migrations
 
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
+
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Cor")
                         .HasColumnType("nvarchar(max)");
@@ -65,9 +106,6 @@ namespace Fiap.CP_1.SofiaBag.Migrations
 
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Tipo")
-                        .HasColumnType("int");
 
                     b.HasKey("CodigoId");
 
@@ -105,6 +143,25 @@ namespace Fiap.CP_1.SofiaBag.Migrations
                     b.ToTable("T_USUARIO");
                 });
 
+            modelBuilder.Entity("Fiap.CP_1.SofiaBag.Models.ObjetoCategoria", b =>
+                {
+                    b.HasOne("Fiap.CP_1.SofiaBag.Models.Categoria", "Categoria")
+                        .WithMany("ObjetosCateg")
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Fiap.CP_1.SofiaBag.Models.Objetos", "Objeto")
+                        .WithMany("ObjetosCateg")
+                        .HasForeignKey("CodigoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categoria");
+
+                    b.Navigation("Objeto");
+                });
+
             modelBuilder.Entity("Fiap.CP_1.SofiaBag.Models.Objetos", b =>
                 {
                     b.HasOne("Fiap.CP_1.SofiaBag.Models.Lembrete", "Lembrete")
@@ -114,6 +171,16 @@ namespace Fiap.CP_1.SofiaBag.Migrations
                         .IsRequired();
 
                     b.Navigation("Lembrete");
+                });
+
+            modelBuilder.Entity("Fiap.CP_1.SofiaBag.Models.Categoria", b =>
+                {
+                    b.Navigation("ObjetosCateg");
+                });
+
+            modelBuilder.Entity("Fiap.CP_1.SofiaBag.Models.Objetos", b =>
+                {
+                    b.Navigation("ObjetosCateg");
                 });
 #pragma warning restore 612, 618
         }

@@ -14,6 +14,7 @@ namespace Fiap.CP_1.SofiaBag.Models
         [HiddenInput]
         public int CategoriaId { get; set; }
 
+        [MaxLength(55)]
         public string Nome { get; set; }
 
         [MaxLength(30)]
@@ -21,6 +22,9 @@ namespace Fiap.CP_1.SofiaBag.Models
 
         [DataType(DataType.Date)] [Display(Name ="Data Cadastro")]
         public DateTime DtCadastro { get; set; }
+
+        // relacionamento N:N
+        public ICollection<ObjetoCategoria> ObjetosCateg { get; set; }
 
     }
 }
