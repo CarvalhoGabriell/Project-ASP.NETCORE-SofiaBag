@@ -12,54 +12,90 @@
     <div class="col">
         <h2>Cadastro Categorias</h2>
 
-        <form asp-action="cadastrar">
+        <form asp-action="Adicionar">
             <div class="form-group">
                 <label asp-for="Nome"></label>
-                <input asp-for="Nome" class="form-control"/>
+                <input asp-for="Nome" class="form-control" />
             </div>
 
             <div class="form-group">
                 <label asp-for="DtCadastro"></label>
-                <input asp-for="DtCadastro" class="form-control" type="date"/>
+                <input asp-for="DtCadastro" class="form-control" type="date" />
             </div>
 
             <div class="form-group">
                 <label asp-for="Descricao"></label>
-                <textarea asp-for="Descricao" class="form-text" 
-                          placeholder="Informe uma descrição" 
+                <textarea asp-for="Descricao" class="form-control"
+                          placeholder="Informe uma descrição"
                           wrap="soft"
-                          cols="80"
-                          rows="5"
-                          >
+                          cols="60"
+                          rows="3">
                     
                 </textarea>
             </div>
-            <input type="submit" class="form-control" value="Cadastrar"/>
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-sm btn-success" value="Cadastrar" />
+                <a class="btn btn-sm btn-danger" asp-action="index">Cancelar</a>
+
+            </div>
         </form>
     </div>
 
 
     <div class="col">
-        <h2>Listagem</h2>
+        <h2>Aqui suas Categorias</h2>
 
-        <table class="table table-hover table-danger">
+        <table class="table table-hover table-primary">
             <tr>
                 <th>Nome</th>
                 <th>Data Cadastro</th>
                 <th>Descrição</th>
-
+                <th>Ações</th>
             </tr>
 
-            @foreach(var itens in ViewBag.categorias)
+            @foreach (var itens in ViewBag.categorias)
             {
                 <tr>
                     <td>@itens.Nome</td>
-                    <td>@itens.DtCadastro</td>
+                    <td>@itens.DtCadastro.ToShortDateString()</td>
                     <td>@itens.Descricao</td>
+                    <td>
+                        <button onclick="idCateg.value = @itens.CategoriaId" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#exampleModal">Deletar</button>
+
+                    </td>
                 </tr>
             }
-
         </table>
     </div>
 
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:red">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmação Remover</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                Ops :( <br />
+                Deseja Mesmo Deletar essa Categoria? <br />
+            </div>
+            <div class="modal-footer">
+                <form asp-action="Remover">
+                    <!-- O atributo "id deve ser o mesmo informado no metodo POST da action de remover"-->
+                    <input type="hidden" name="id" id="idCateg" />
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger">Sim</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

@@ -35,11 +35,15 @@ namespace Fiap.CP_1.SofiaBag.Models
         // relacionamento 1:1
         public Lembrete Lembrete { get; set; }
 
-        public int LembreteId { get; set; }
+        public int? LembreteId { get; set; }
 
         /*
          * RELACIOAMENTO N:1 DE USUARIOS
          */
+
+        public int UsuarioId { get; set; }
+
+        public Usuario Usuario { get; set; }
 
     }
 }

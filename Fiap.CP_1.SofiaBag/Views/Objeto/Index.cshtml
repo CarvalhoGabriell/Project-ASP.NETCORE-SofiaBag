@@ -45,6 +45,7 @@
         <th>Status Lembrete</th>
         <th>Remover</th>
         <th>Editar</th>
+        <th>Adicionar Categoria</th>
     </tr>
 
     @foreach (var itens in Model)
@@ -65,7 +66,9 @@
                 <a class="btn btn-sm btn-warning" asp-action="editar" asp-route-id="@itens.CodigoId">Editar</a>
 
             </td>    
-
+            <td>
+                <a class="btn btn-sm btn-success" asp-action="AdicionarCateg" asp-route-id="@itens.CodigoId">Vincular categoria</a>
+            </td>
         </tr>
 
 

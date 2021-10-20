@@ -20,7 +20,7 @@ namespace Fiap.CP_1.SofiaBag.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(string nomeBuscado)
+        public IActionResult Index(string nomeBuscado, int? idUser)
         {
             var busca = _context.Objetos.Where(str =>
                 (str.Nome.Contains(nomeBuscado) || nomeBuscado == null))
@@ -30,15 +30,20 @@ namespace Fiap.CP_1.SofiaBag.Controllers
         }
 
         [HttpGet]
-        public IActionResult Cadastrar()
+        public IActionResult Cadastrar(int id)
         {
             CarregarCores();
+            ViewBag.usuarios = id;
             return View();
         }
 
         [HttpPost]
         public IActionResult Cadastrar(Objetos obj)
         {
+            if (obj.Lembrete.Nome == null)
+            {
+                obj.Lembrete = null;
+            }
             _context.Objetos.Add(obj);
             _context.SaveChanges();
             TempData["msg"] = "Objeto Cadastrado com Sucesso!";
@@ -78,6 +83,44 @@ namespace Fiap.CP_1.SofiaBag.Controllers
             return RedirectToAction("Index");
         }
 
+
+        [HttpGet]
+        public IActionResult AdicionarCateg(int id)
+        {
+            // recuperar os objetos cadastrados no banco
+            var objetos = _context.Objetos
+                .Include(o => o.Lembrete)
+                .Include(user => user.Usuario)
+                .Where(o => o.CodigoId == id)
+                .FirstOrDefault();
+
+            // recuperar todos as categorias cadastradas no banco
+            var allCategs = _context.Categorias.Where(c => c.CategoriaId !=0).ToList();
+
+            // pesquisar as categorias associados a um objeto
+            var objsCategoria = _context.ObjetosCategoria.Where(o => o.CodigoId == id).Select(o => o.Categoria).ToList();
+
+            // Mostrar na tela as categorias que nao estao associados aquele objeto
+            var filtroFinal = allCategs.Where(c => !objsCategoria.Any(c1 => c1.CategoriaId == c.CategoriaId));
+
+            // viewbag carregadas para enviar para o front
+            ViewBag.categSelect = new SelectList(filtroFinal, "CategoriaId", "Nome");
+
+            ViewBag.categorias = objsCategoria;
+
+            return View(objetos);
+        }
+
+
+        [HttpPost]
+        public IActionResult AdicionarCateg(ObjetoCategoria objCateg)
+        {
+            _context.ObjetosCategoria.Add(objCateg);
+            _context.SaveChanges();
+            TempData["msg"] = "Categoria Vinculada com Sucesso!";
+
+            return RedirectToAction("AdicionarCateg"); //new {id = objCateg.CodigoId}
+        }
 
         public void CarregarCores()
         {

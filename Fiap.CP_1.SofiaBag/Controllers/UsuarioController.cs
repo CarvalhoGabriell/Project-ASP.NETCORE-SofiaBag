@@ -36,7 +36,7 @@ namespace Fiap.CP_1.SofiaBag.Controllers
             _context.Usuarios.Add(user);
             _context.SaveChanges();
             TempData["msg"] = "Usuário Cadastrado com sucesso";
-            return RedirectToAction("Cadastrar", "Objeto");
+            return RedirectToAction("Cadastrar");
         }
 
         [HttpPost]

@@ -14,8 +14,11 @@
 
     <partial name="_FormObjeto" />
 
-    <div style="margin-top:15px">
+    <div>
+        <input asp-for="CodigoId"/>
+    </div>
 
+    <div style="margin-top:15px">
         <input type="submit" class="btn btn-outline-success" value="Salvar" />
         <a asp-action="index" class="btn btn-danger">Cancelar</a>
     </div>

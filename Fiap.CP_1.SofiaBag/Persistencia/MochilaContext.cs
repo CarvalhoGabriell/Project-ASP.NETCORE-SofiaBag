@@ -17,6 +17,8 @@ namespace Fiap.CP_1.SofiaBag.Persistencia
 
         public DbSet<Categoria> Categorias { get; set; }
 
+        public DbSet<ObjetoCategoria> ObjetosCategoria { get; set; }
+
         public MochilaContext(DbContextOptions op): base(op) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

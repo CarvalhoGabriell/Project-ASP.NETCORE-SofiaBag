@@ -29,9 +29,8 @@ namespace Fiap.CP_1.SofiaBag.Models
         [Display(Name = "Gênero")]
         public Genero Sexo { get; set; }
 
-        /*
-         * RELACIONAMENTO 1:N DE OBJETOS
-         */
+        // RELACIONAMENTO 1:N
+        public virtual ICollection<Objetos> Objetos { get; set; }
     }
     public enum Genero
     {

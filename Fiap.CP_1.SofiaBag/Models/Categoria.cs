@@ -17,7 +17,6 @@ namespace Fiap.CP_1.SofiaBag.Models
         [MaxLength(55)]
         public string Nome { get; set; }
 
-        [MaxLength(30)]
         public string Descricao { get; set; }
 
         [DataType(DataType.Date)] [Display(Name ="Data Cadastro")]

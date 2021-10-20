@@ -22,7 +22,7 @@
 </form>
 
 
-<table style="border-radius:10px" class="table table-active table-dark">
+<table style="border-radius:10px" class="table table-borderless table-dark">
     <tr>
         <th>ID</th>
         <th>Nome</th>
@@ -31,6 +31,7 @@
         <th>Data Nascimento</th>
         <th>Sexo</th>
         <th>Ações</th>
+        <th>Dados Objetos</th>
     </tr>
 
     @foreach (var user in Model)
@@ -45,7 +46,10 @@
             <td style="justify-content:space-between">
                 <button onclick="idUser.value = @user.UsuarioId" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#exampleModal">Remover</button>
             </td>
-
+            <td>
+                <a class="btn btn-sm btn-warning" asp-action="Cadastrar" asp-controller="Objeto" asp-route-id="@user.UsuarioId">Pegar Objetos</a>
+                <a class="btn btn-sm btn-secondary" asp-action="Index" asp-controller="Objeto" asp-route-idUser="@user.UsuarioId">Seus Objetos</a>
+            </td>
         </tr>
     }
 
