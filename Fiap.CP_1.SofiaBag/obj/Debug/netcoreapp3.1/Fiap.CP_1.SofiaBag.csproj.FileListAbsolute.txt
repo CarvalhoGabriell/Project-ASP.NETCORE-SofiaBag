@@ -1164,4 +1164,4 @@ C:\Users\Mateus\Source\Repos\Project-ASP.NETCORE-SofiaBag\Fiap.CP_1.SofiaBag\obj
 C:\Users\Mateus\Source\Repos\Project-ASP.NETCORE-SofiaBag\Fiap.CP_1.SofiaBag\obj\Debug\netcoreapp3.1\Fiap.CP_1.SofiaBag.genruntimeconfig.cache
 C:\Users\Gabriel\source\repos\Fiap.Check.Web.SofiaBag\Fiap.CP_1.SofiaBag\obj\Debug\netcoreapp3.1\Razor\Views\Objeto\_FormObjeto.cshtml.g.cs
 C:\Users\Gabriel\source\repos\Fiap.Check.Web.SofiaBag\Fiap.CP_1.SofiaBag\obj\Debug\netcoreapp3.1\Razor\Views\Categoria\Index.cshtml.g.cs
-C:\Users\Gabriel\source\repos\Fiap.Check.Web.SofiaBag\Fiap.CP_1.SofiaBag\obj\Debug\netcoreapp3.1\Razor\Views\Objeto\AddCategoria.cshtml.g.cs
+C:\Users\Gabriel\source\repos\Fiap.Check.Web.SofiaBag\Fiap.CP_1.SofiaBag\obj\Debug\netcoreapp3.1\Razor\Views\Objeto\AdicionarCateg.cshtml.g.cs

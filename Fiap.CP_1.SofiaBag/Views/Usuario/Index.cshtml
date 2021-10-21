@@ -1,11 +1,13 @@
 ﻿@model List<Usuario>
 
 @{
-    ViewData["Title"] = "Usuarios";
+    ViewData["Title"] = "Usuários";
 }
 
 
 <button type="button" style="margin-bottom:1rem" class="btn btn-primary btn-lg btn-block">Lista de Usuários</button>
+
+<sucess-msg mensagem="@TempData["msg"]"></sucess-msg>
 
 <form class="row row-cols-lg-auto g-3 align-items-center">
     <div class="col-8" style="margin-bottom:9px">
@@ -31,7 +33,7 @@
         <th>Data Nascimento</th>
         <th>Sexo</th>
         <th>Ações</th>
-        <th>Dados Objetos</th>
+        <th class="text-center">Dados Objetos</th>
     </tr>
 
     @foreach (var user in Model)
@@ -46,9 +48,9 @@
             <td style="justify-content:space-between">
                 <button onclick="idUser.value = @user.UsuarioId" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#exampleModal">Remover</button>
             </td>
-            <td>
+            <td class="text-center">
                 <a class="btn btn-sm btn-warning" asp-action="Cadastrar" asp-controller="Objeto" asp-route-id="@user.UsuarioId">Pegar Objetos</a>
-                <a class="btn btn-sm btn-secondary" asp-action="Index" asp-controller="Objeto" asp-route-idUser="@user.UsuarioId">Seus Objetos</a>
+                <a class="btn btn-sm btn-secondary" asp-action="Index" asp-controller="Objeto" asp-route-idUser="@user.UsuarioId">Ver Objetos</a>
             </td>
         </tr>
     }
@@ -72,7 +74,7 @@
 
             <div class="modal-body">
                 Ops :( <br />
-                Deseja Mesmo Deletar este Funcionario? <br />
+                Deseja Mesmo Deletar este Usuário? <br />
             </div>
             <div class="modal-footer">
                 <form asp-action="Remover">

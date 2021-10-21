@@ -28,7 +28,7 @@ namespace Fiap.CP_1.SofiaBag.Controllers
         {
             _context.Categorias.Add(categ);
             _context.SaveChanges();
-            TempData["msg"] = "Categoria Adicionada!";
+            TempData["categ"] = "Categoria Adicionada!";
 
             return RedirectToAction("Index");
         }
@@ -39,7 +39,7 @@ namespace Fiap.CP_1.SofiaBag.Controllers
             var busca = _context.Categorias.Find(id);
             _context.Categorias.Remove(busca);
             _context.SaveChanges();
-            TempData["msg"] = "Categoria Removida!";
+            TempData["categ"] = "Categoria Removida!";
             return RedirectToAction("index");
         }
     }

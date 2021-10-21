@@ -4,7 +4,7 @@
     ViewData["title"] = "Seus Objetos para SofiaBag";
 }
 
-<sucess-msg mensagem="@TempData["msg"]"></sucess-msg>
+<sucess-msg mensagem="@TempData["obj"]"></sucess-msg>
 
 <button type="button" style="margin-bottom:1rem" class="btn btn-primary btn-lg btn-block">Seus Objetos Cadastrados</button>
 
@@ -19,11 +19,6 @@
     <div class="col-2" style="margin-bottom:10px">
         <input type="submit" class="btn btn-primary" value="Pesquisar" />
     </div>
-
-    <div class="col-2" style="margin-bottom:10px">
-        <a style="background-color:greenyellow" class="btn btn-success" asp-action="Cadastrar">Cadastre Outro</a>
-    </div>
-
 
 </form>
 

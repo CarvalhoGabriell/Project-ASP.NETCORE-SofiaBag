@@ -22,8 +22,8 @@ namespace Fiap.CP_1.SofiaBag.Controllers
         [HttpGet]
         public IActionResult Index(string nomeBuscado, int? idUser)
         {
-            var busca = _context.Objetos.Where(str =>
-                (str.Nome.Contains(nomeBuscado) || nomeBuscado == null))
+            var busca = _context.Objetos.Where
+                (str => (str.Nome.Contains(nomeBuscado) || nomeBuscado == null) && (str.UsuarioId == idUser))
                 .Include(o => o.Lembrete).ToList();
                
             return View(busca);
@@ -40,13 +40,14 @@ namespace Fiap.CP_1.SofiaBag.Controllers
         [HttpPost]
         public IActionResult Cadastrar(Objetos obj)
         {
-            if (obj.Lembrete.Nome == null)
+            if (obj.Lembrete.Nome == null && obj.ObjetosCateg == null)
             {
                 obj.Lembrete = null;
+                obj.ObjetosCateg = null;
             }
             _context.Objetos.Add(obj);
             _context.SaveChanges();
-            TempData["msg"] = "Objeto Cadastrado com Sucesso!";
+            TempData["obj"] = "Objeto Cadastrado com Sucesso!";
             return RedirectToAction("Cadastrar");
         }
         
@@ -58,7 +59,7 @@ namespace Fiap.CP_1.SofiaBag.Controllers
             _context.Objetos.Remove(busca);
             _context.SaveChanges();
 
-            TempData["msg"] = "Objeto Removido com Sucesso";
+            TempData["obj"] = "Objeto Removido com Sucesso";
             return RedirectToAction("Index");
         }
 
@@ -69,6 +70,8 @@ namespace Fiap.CP_1.SofiaBag.Controllers
             // apos no clique no botao "editar" no objeto da tabela esse metodo irá procurar ele no (banco de dados)
             var objeto = _context.Objetos
                 .Include(o => o.Lembrete)
+                .Include(u => u.Usuario)
+                .Include(c => c.ObjetosCateg)
                 .Where(o => o.CodigoId == id)
                 .FirstOrDefault();
             return View(objeto);
@@ -79,7 +82,7 @@ namespace Fiap.CP_1.SofiaBag.Controllers
         {
             _context.Objetos.Update(objs);
             _context.SaveChanges();
-            TempData["msg"] = "Objeto Editado com Sucesso!";
+            TempData["obj"] = "Objeto Editado com Sucesso!";
             return RedirectToAction("Index");
         }
 
@@ -117,7 +120,7 @@ namespace Fiap.CP_1.SofiaBag.Controllers
         {
             _context.ObjetosCategoria.Add(objCateg);
             _context.SaveChanges();
-            TempData["msg"] = "Categoria Vinculada com Sucesso!";
+            TempData["obj"] = "Categoria Vinculada com Sucesso!";
 
             return RedirectToAction("AdicionarCateg"); //new {id = objCateg.CodigoId}
         }

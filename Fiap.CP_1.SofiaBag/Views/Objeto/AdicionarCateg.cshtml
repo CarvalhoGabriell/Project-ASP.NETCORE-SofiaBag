@@ -1,0 +1,57 @@
+﻿@model Objetos
+
+
+@{
+    ViewData["title"] = "Vincule uma Categorias";
+}
+
+<hr />
+
+<sucess-msg mensagem="@TempData["obj"]"></sucess-msg>
+
+<div class="row">
+    <div class="col" style="border:groove ;border-color:aqua">
+        <h2 class="font-weight-bold" style="text-align:center"><<< Seu Objeto >>></h2>
+        <h2>@Model.Nome</h2>
+        <h3>Descrição: @Model.Descricao</h3>
+        <span class="badge badge-success rounded-pill" style="width: 5rem; height: 1.6rem; font-size: 13px">Status  @Model.Ativo</span>
+        <h5 class="font-weight-bold">Data do Cadastro @Model.DtCadastro.ToShortDateString()</h5>
+
+    </div>
+
+    <div class="col" style="border:groove; border-color: aqua; margin-left:0.8rem">
+        <h1 class="font-weight-bold" style="text-align:center">Lembretes Vinculados</h1>
+        <h4 class="font-weight-bold">Nome: @Model.Lembrete.Nome</h4>
+        <h5 class="font-weight-bold">Data do Cadastro @Model.Lembrete.DtLembrete.ToShortDateString()</h5>
+        <h5 class="badge badge-success rounded-pill" style="width: 5rem; height: 1.6rem; font-size: 13px">Status  @Model.Lembrete.Status</h5>
+
+    </div>
+</div>
+
+<hr />
+
+<div class="align-content-md-center">
+    <h2>Categorias</h2>
+    <form asp-action="AdicionarCateg" class="form-inline">
+        <div class="input-group">
+            <input type="hidden" name="CodigoId" value="@Model.CodigoId" />
+            <select class="form-control" asp-items="@ViewBag.categSelect" name="CategoriaId">
+                <option>Selecione um Categoria</option>
+
+            </select>
+        </div>
+        <button style="margin-left:0.5rem" type="submit" class="btn btn-success">Vincular</button>
+
+    </form>
+
+    <ul class="list-group">
+
+        @foreach (var itens in ViewBag.categorias)
+        {
+            <li class="list-group-item-success" style="margin-top:1.6rem; width:9rem; text-align:center; border-radius:5px"> @itens.Nome</li>
+
+        }
+
+    </ul>
+
+</div>

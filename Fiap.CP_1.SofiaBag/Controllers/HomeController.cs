@@ -1,4 +1,5 @@
 ﻿using Fiap.CP_1.SofiaBag.Models;
+using Fiap.CP_1.SofiaBag.Persistencia;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,13 +14,20 @@ namespace Fiap.CP_1.SofiaBag.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private MochilaContext _context;
+
+        public HomeController(MochilaContext context, ILogger<HomeController> logger)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
+            var qtdUsers = _context.Usuarios.Count();
+            var qtdObjs = _context.Objetos.Count();
+            ViewData["totalObjs"] = qtdObjs;
+            ViewData["totalUsers"] = qtdUsers;
             return View();
         }
 

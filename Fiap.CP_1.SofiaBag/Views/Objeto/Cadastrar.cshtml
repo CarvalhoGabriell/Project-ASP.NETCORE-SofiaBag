@@ -5,7 +5,7 @@
 }
 
 
-<sucess-msg mensagem="@TempData["msg"]"></sucess-msg>
+<sucess-msg mensagem="@TempData["obj"]"></sucess-msg>
 
 <button type="button" style="margin-bottom:1rem" class="btn btn-primary btn-lg btn-block">Cadastre Objetos Para usar na sua Sofia-Bag</button>
 
@@ -19,8 +19,4 @@
         <a asp-action="index" class="btn btn-lg btn-danger">Cancelar</a>
     </div>
 
-    <fieldset>
-        <a asp-action="index" class="btn btn-lg btn-primary"> Ver Objetos</a>
-
-    </fieldset>
 </form>
