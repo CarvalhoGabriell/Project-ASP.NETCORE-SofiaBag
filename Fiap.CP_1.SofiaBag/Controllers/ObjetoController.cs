@@ -22,11 +22,20 @@ namespace Fiap.CP_1.SofiaBag.Controllers
         [HttpGet]
         public IActionResult Index(string nomeBuscado, int? idUser)
         {
-            var busca = _context.Objetos.Where
-                (str => (str.Nome.Contains(nomeBuscado) || nomeBuscado == null) && (str.UsuarioId == idUser))
-                .Include(o => o.Lembrete).ToList();
-               
-            return View(busca);
+
+            if (nomeBuscado == null && idUser == null)
+            {
+                var busca = _context.Objetos
+                    .Include(l => l.Lembrete)
+                    .Include(l => l.Usuario)
+                    .ToList();
+                return View(busca);
+            }
+            var filtro = _context.Objetos.Where(obj => obj.Nome.Contains(nomeBuscado) || obj.UsuarioId == idUser)
+                .Include(l => l.Lembrete)
+                .Include(l => l.Usuario)
+                .ToList();
+            return View(filtro);
         }
 
         [HttpGet]
@@ -50,9 +59,9 @@ namespace Fiap.CP_1.SofiaBag.Controllers
             TempData["obj"] = "Objeto Cadastrado com Sucesso!";
             return RedirectToAction("Cadastrar");
         }
-        
+
         [HttpPost]
-        public IActionResult Deletar(int id) 
+        public IActionResult Deletar(int id)
         {
             var busca = _context.Objetos.Find(id);
             // Metodo para procurar na lista de objetos cadastrados (Banco de Dados) e remover
@@ -70,20 +79,27 @@ namespace Fiap.CP_1.SofiaBag.Controllers
             // apos no clique no botao "editar" no objeto da tabela esse metodo irá procurar ele no (banco de dados)
             var objeto = _context.Objetos
                 .Include(o => o.Lembrete)
-                .Include(u => u.Usuario)
                 .Include(c => c.ObjetosCateg)
+                .Include(u => u.Usuario)
                 .Where(o => o.CodigoId == id)
                 .FirstOrDefault();
+            ViewBag.usuarios = objeto.UsuarioId;
             return View(objeto);
         }
 
         [HttpPost]
         public IActionResult Editar(Objetos objs)
         {
+            if (objs.ObjetosCateg == null)
+            {
+                
+                objs.ObjetosCateg = null;
+            }
             _context.Objetos.Update(objs);
             _context.SaveChanges();
             TempData["obj"] = "Objeto Editado com Sucesso!";
-            return RedirectToAction("Index");
+            return RedirectToAction("Editar");
+
         }
 
 
@@ -98,7 +114,7 @@ namespace Fiap.CP_1.SofiaBag.Controllers
                 .FirstOrDefault();
 
             // recuperar todos as categorias cadastradas no banco
-            var allCategs = _context.Categorias.Where(c => c.CategoriaId !=0).ToList();
+            var allCategs = _context.Categorias.Where(c => c.CategoriaId != 0).ToList();
 
             // pesquisar as categorias associados a um objeto
             var objsCategoria = _context.ObjetosCategoria.Where(o => o.CodigoId == id).Select(o => o.Categoria).ToList();

@@ -14,12 +14,12 @@ namespace Fiap.CP_1.SofiaBag.Models
         [HiddenInput]
         public int CategoriaId { get; set; }
 
-        [MaxLength(55)]
+        [MaxLength(55), Required]
         public string Nome { get; set; }
 
         public string Descricao { get; set; }
 
-        [DataType(DataType.Date)] [Display(Name ="Data Cadastro")]
+        [DataType(DataType.Date)] [Display(Name ="Data Cadastro"), Required]
         public DateTime DtCadastro { get; set; }
 
         // relacionamento N:N

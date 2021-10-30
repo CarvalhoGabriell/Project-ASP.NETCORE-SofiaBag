@@ -14,16 +14,15 @@ namespace Fiap.CP_1.SofiaBag.Models
         [HiddenInput]
         public int UsuarioId { get; set; }
 
-        [Display(Name ="Nome Completo")]
-        [MaxLength(100)]
+        [Display(Name ="Nome Completo"), MaxLength(100), Required]
         public string NomeCompleto { get; set; }
 
-        [Display(Name ="Nome da sua Mochila")] [MaxLength(40)]
+        [Display(Name ="Nome da sua Mochila")] [Required,MaxLength(40)]
         public string NomeMochila { get; set; }
 
         public int Idade { get; set; }
 
-        [Display(Name ="Data Nascimento")] [DataType(DataType.Date)]
+        [Display(Name ="Data Nascimento")] [DataType(DataType.Date), Required]
         public DateTime DtNascimento { get; set; }
 
         [Display(Name = "Gênero")]

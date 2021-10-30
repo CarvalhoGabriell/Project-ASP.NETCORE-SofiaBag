@@ -17,8 +17,10 @@ namespace Fiap.CP_1.SofiaBag.Models
         [Display(Name = "Nome do Lembrete")] [MaxLength(30)]
         public string Nome { get; set; }
 
-        [Display(Name = "Data do Lembrete")]
+
+        [Display(Name = "Data e Hora do Lembrete")]
         public DateTime DtLembrete { get; set; }
+
 
         public bool? Status { get; set; }
     }

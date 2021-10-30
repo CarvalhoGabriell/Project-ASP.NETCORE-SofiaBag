@@ -14,13 +14,16 @@ namespace Fiap.CP_1.SofiaBag.Models
         [HiddenInput][Key]
         public int CodigoId { get; set; }
 
+        [Required]
         public string Nome { get; set; }
 
+        [Required]
         public bool Ativo { get; set; }
+        
         [Display(Name ="Descrição")]
         public string Descricao { get; set; }
 
-        [DataType(DataType.Date), Display(Name ="Data de Cadastro")]
+        [DataType(DataType.Date), Display(Name ="Data de Cadastro"), Required]
         public DateTime DtCadastro { get; set; }
 
         [Display(Name ="Cores")]

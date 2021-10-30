@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fiap.CP_1.SofiaBag.Migrations
 {
     [DbContext(typeof(MochilaContext))]
-    [Migration("20211017005729_Lembrete4")]
-    partial class Lembrete4
+    [Migration("20211022204701_DeleteRequired")]
+    partial class DeleteRequired
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,29 @@ namespace Fiap.CP_1.SofiaBag.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Fiap.CP_1.SofiaBag.Models.Categoria", b =>
+                {
+                    b.Property<int>("CategoriaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DtCadastro")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(55)
+                        .HasColumnType("nvarchar(55)");
+
+                    b.HasKey("CategoriaId");
+
+                    b.ToTable("TB_CATEGORIA");
+                });
 
             modelBuilder.Entity("Fiap.CP_1.SofiaBag.Models.Lembrete", b =>
                 {
@@ -43,6 +66,21 @@ namespace Fiap.CP_1.SofiaBag.Migrations
                     b.ToTable("TB_LEMBRETE");
                 });
 
+            modelBuilder.Entity("Fiap.CP_1.SofiaBag.Models.ObjetoCategoria", b =>
+                {
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CodigoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CategoriaId", "CodigoId");
+
+                    b.HasIndex("CodigoId");
+
+                    b.ToTable("TB_OBJETOS_CATEGORIAS");
+                });
+
             modelBuilder.Entity("Fiap.CP_1.SofiaBag.Models.Objetos", b =>
                 {
                     b.Property<int>("CodigoId")
@@ -53,6 +91,9 @@ namespace Fiap.CP_1.SofiaBag.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Cor")
                         .HasColumnType("nvarchar(max)");
 
@@ -62,18 +103,21 @@ namespace Fiap.CP_1.SofiaBag.Migrations
                     b.Property<DateTime>("DtCadastro")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("LembreteId")
+                    b.Property<int?>("LembreteId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Tipo")
+                    b.Property<int>("UsuarioId")
                         .HasColumnType("int");
 
                     b.HasKey("CodigoId");
 
                     b.HasIndex("LembreteId");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("TB_OBJETOS");
                 });
@@ -92,10 +136,12 @@ namespace Fiap.CP_1.SofiaBag.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("NomeCompleto")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("NomeMochila")
+                        .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
 
@@ -107,15 +153,55 @@ namespace Fiap.CP_1.SofiaBag.Migrations
                     b.ToTable("T_USUARIO");
                 });
 
+            modelBuilder.Entity("Fiap.CP_1.SofiaBag.Models.ObjetoCategoria", b =>
+                {
+                    b.HasOne("Fiap.CP_1.SofiaBag.Models.Categoria", "Categoria")
+                        .WithMany("ObjetosCateg")
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Fiap.CP_1.SofiaBag.Models.Objetos", "Objeto")
+                        .WithMany("ObjetosCateg")
+                        .HasForeignKey("CodigoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categoria");
+
+                    b.Navigation("Objeto");
+                });
+
             modelBuilder.Entity("Fiap.CP_1.SofiaBag.Models.Objetos", b =>
                 {
                     b.HasOne("Fiap.CP_1.SofiaBag.Models.Lembrete", "Lembrete")
                         .WithMany()
-                        .HasForeignKey("LembreteId")
+                        .HasForeignKey("LembreteId");
+
+                    b.HasOne("Fiap.CP_1.SofiaBag.Models.Usuario", "Usuario")
+                        .WithMany("Objetos")
+                        .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Lembrete");
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("Fiap.CP_1.SofiaBag.Models.Categoria", b =>
+                {
+                    b.Navigation("ObjetosCateg");
+                });
+
+            modelBuilder.Entity("Fiap.CP_1.SofiaBag.Models.Objetos", b =>
+                {
+                    b.Navigation("ObjetosCateg");
+                });
+
+            modelBuilder.Entity("Fiap.CP_1.SofiaBag.Models.Usuario", b =>
+                {
+                    b.Navigation("Objetos");
                 });
 #pragma warning restore 612, 618
         }

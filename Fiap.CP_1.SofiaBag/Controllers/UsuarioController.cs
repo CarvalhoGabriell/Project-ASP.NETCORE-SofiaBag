@@ -1,6 +1,7 @@
 ﻿using Fiap.CP_1.SofiaBag.Models;
 using Fiap.CP_1.SofiaBag.Persistencia;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace Fiap.CP_1.SofiaBag.Controllers
         {
             var busca = _context.Usuarios
                 .Where(f =>f.NomeCompleto.Contains(nomeBuscado) || nomeBuscado == null)
+                .Include(us => us.Objetos)
                 .ToList();
             return View(busca);
         }
@@ -35,7 +37,7 @@ namespace Fiap.CP_1.SofiaBag.Controllers
         {
             _context.Usuarios.Add(user);
             _context.SaveChanges();
-            TempData["msg"] = "Usuário Cadastrado com sucesso";
+            TempData["obj"] = "Usuário Cadastrado com sucesso";
             return RedirectToAction("Cadastrar", "Objeto", new { id =user.UsuarioId });
         }
 
@@ -48,5 +50,22 @@ namespace Fiap.CP_1.SofiaBag.Controllers
             TempData["msg"] = "Usuário Removido com sucesso";
             return RedirectToAction("index");
         }
+
+        [HttpGet]
+        public IActionResult Edicao(int id)
+        {
+            var users = _context.Usuarios.Where(u => u.UsuarioId == id).Include(u=>u.Objetos).FirstOrDefault(); 
+            return View(users);
+        }
+
+        [HttpPost]
+        public IActionResult Edicao(Usuario user)
+        {
+            _context.Usuarios.Update(user);
+            _context.SaveChanges();
+            TempData["msg"] = "Usuario Editado com sucesso!";
+            return RedirectToAction("index");
+        }
+
     }
 }

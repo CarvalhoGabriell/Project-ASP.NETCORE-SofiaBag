@@ -32,6 +32,8 @@
     <tr>
         <th>RFID</th>
         <th>Nome</th>
+        <th>ID Usuario</th>
+        <th>Nome Usuario</th>
         <th>Descrição</th>
         <th>Status Atual</th>
         <th>Data Cadastro</th>
@@ -45,26 +47,36 @@
 
     @foreach (var itens in Model)
     {
-        <tr>
-            <td>@itens.CodigoId</td>
-            <td>@itens.Nome</td>
-            <td>@itens.Descricao</td>
-            <td>@(itens.Ativo?"True":"False")</td>
-            <td>@itens.DtCadastro.ToShortDateString()</td>
-            <td>@itens.Cor</td>
-            <td class="font-italic">@(itens.Lembrete == null? "----------" : itens.Lembrete.Nome) || Data e Hora: @itens.Lembrete.DtLembrete</td>
-            <td>@(itens.Lembrete.Status.GetValueOrDefault()?"Ativo": "Inativo")</td>
-            <td style="justify-content:space-between">
-                <button onclick="idObject.value = @itens.CodigoId" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#exampleModal">Remover</button>
-            </td>
-            <td>
-                <a class="btn btn-sm btn-warning" asp-action="editar" asp-route-id="@itens.CodigoId">Editar</a>
+<tr>
+    <td>@itens.CodigoId</td>
+    <td>@itens.Nome</td>
+    <td class="text-center">@itens.Usuario.UsuarioId</td>
+    <td>@itens.Usuario.NomeCompleto</td>
+    <td>@itens.Descricao</td>
+    <td>@(itens.Ativo?"True":"False")</td>
+    <td>@itens.DtCadastro.ToShortDateString()</td>
+    <td>@itens.Cor</td>
+    <td class="font-italic">@(itens.Lembrete == null? "----------" : itens.Lembrete.Nome + "  Data e Hora: " + itens.Lembrete.DtLembrete) </td>
+    @if (itens.Lembrete?.Status == null)
+        {
+        <td>------------</td>
 
-            </td>    
-            <td>
-                <a class="btn btn-sm btn-success" asp-action="AdicionarCateg" asp-route-id="@itens.CodigoId">Vincular categoria</a>
-            </td>
-        </tr>
+        }else
+            {
+                <td>@itens.Lembrete?.Status.GetValueOrDefault()</td>
+            }
+
+    <td style="justify-content:space-between">
+        <button onclick="idObject.value = @itens.CodigoId" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#exampleModal">Remover</button>
+    </td>
+    <td>
+        <a class="btn btn-sm btn-warning" asp-action="editar" asp-route-id="@itens.CodigoId">Editar</a>
+
+    </td>
+    <td>
+        <a class="btn btn-sm btn-success" asp-action="AdicionarCateg" asp-route-id="@itens.CodigoId">Vincular categoria</a>
+    </td>
+</tr>
 
 
     }

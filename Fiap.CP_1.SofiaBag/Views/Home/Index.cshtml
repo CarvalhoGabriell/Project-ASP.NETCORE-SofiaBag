@@ -9,21 +9,21 @@
 
     <div class="text-center">
 
-        <h2 class="badge badge-pill" style="margin-bottom:15px; font-size:30px; padding:15px; color:aqua; background-color:aliceblue">Welcome To Sofia-Bag</h2>
+        <h2 class="badge badge-pill" style="margin-bottom:15px; font-size:30px; text-align:center; padding:15px; color:aqua; background-color:aliceblue">Welcome To Sofia-Bag</h2>
     </div>
    
-    <div class="card" style="width:25rem">
+    <div class="card" style="width:20rem">
         <div class="card-header">
             <h5 class="badge badge-primary badge-pill" style="background-color: aquamarine; font-size: 20px; padding: 15px;">Usuários da SofiaBag</h5>
         </div>
         <div class="card-body">
-            <h4 class="card-subtitle mb-2" style="color:white;">Total Cadastrados: </h4>
+            <h4 class="card-subtitle mb-2" style="color:white;">Total Usuários Cadastrados: </h4>
             <p class="card-subtitle" style="font-size:17px;">@ViewData["totalUsers"]</p>
         </div>
         <div class="card-body">
             <h4 class="card-subtitle mb-2" style="color:white;">Total Objetos Cadastrados: </h4>
             <p class="card-subtitle" style="font-size:17px;">@ViewData["totalObjs"]</p>
-            <a asp-action="Cadastrar" asp-controller="Usuario" class="btn btn-lg btn-primary">Iniciar Cadastro</a>
+            <a asp-action="Cadastrar" asp-controller="Usuario" class="btn btn-lg btn-primary" style="margin-top:1.5rem;margin-left:3rem">Iniciar Cadastro</a>
         </div>
     </div>
 

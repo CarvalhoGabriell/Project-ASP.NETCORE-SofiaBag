@@ -33,6 +33,7 @@ namespace Fiap.CP_1.SofiaBag.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Nome")
+                        .IsRequired()
                         .HasMaxLength(55)
                         .HasColumnType("nvarchar(55)");
 
@@ -104,6 +105,7 @@ namespace Fiap.CP_1.SofiaBag.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UsuarioId")
@@ -132,10 +134,12 @@ namespace Fiap.CP_1.SofiaBag.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("NomeCompleto")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("NomeMochila")
+                        .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
 
